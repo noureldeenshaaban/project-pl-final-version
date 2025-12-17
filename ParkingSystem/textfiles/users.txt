@@ -1,0 +1,6 @@
+admin,admin123,ADMIN
+customer,cust123,CUSTOMER,ABC123
+entryop,entry123,ENTRY_OPERATOR
+exitop,exit123,EXIT_OPERATOR
+Aya,159,ADMIN
+jane,123,CUSTOMER,ff/55
