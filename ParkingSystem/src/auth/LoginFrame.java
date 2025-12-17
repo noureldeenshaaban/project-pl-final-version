@@ -109,7 +109,7 @@ public class LoginFrame extends JFrame {
                     new operator.EntryOperatorGUI().setVisible(true);
                     break;
                 case Constants.ROLE_EXIT_OPERATOR:
-                    new operator.ExitOperatorGUI().setVisible(true);
+                    new operator.ExitOperator().setVisible(true);
                     break;
             }
             

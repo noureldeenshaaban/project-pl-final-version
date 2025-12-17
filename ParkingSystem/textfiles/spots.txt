@@ -1,10 +1,10 @@
 SPOT1,true,TKT6047
 SPOT2,true,TKT5425
 SPOT3,true,TKT5179
-SPOT4,false,
-SPOT5,false,
-SPOT6,false,
-SPOT7,false,
+SPOT4,true,TKT5297
+SPOT5,true,TKT3309
+SPOT6,true,TKT1321
+SPOT7,true,TKT9674
 SPOT8,false,
 SPOT9,false,
 SPOT10,false,

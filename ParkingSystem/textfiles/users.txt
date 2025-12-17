@@ -4,3 +4,4 @@ entryop,entry123,ENTRY_OPERATOR
 exitop,exit123,EXIT_OPERATOR
 Aya,159,ADMIN
 jane,123,CUSTOMER,ff/55
+yousef,6585,CUSTOMER,tt6554
