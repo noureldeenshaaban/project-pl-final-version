@@ -103,7 +103,7 @@ public class LoginFrame extends JFrame {
                     new admin.AdminDashboard().setVisible(true);
                     break;
                 case Constants.ROLE_CUSTOMER:
-                    new customer.CustomerGUI().setVisible(true);
+                    new customer.Customer().setVisible(true);
                     break;
                 case Constants.ROLE_ENTRY_OPERATOR:
                     new operator.EntryOperatorGUI().setVisible(true);

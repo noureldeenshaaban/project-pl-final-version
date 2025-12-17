@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package customer;
+import models. Ticket;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +14,7 @@ public class Customer extends javax.swing.JFrame {
     private String vehiclePlate;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Customer.class.getName());
-public static void main(String args[]) {
-    java.awt.EventQueue.invokeLater(() -> {
-        new Customer().setVisible(true);
-    });
-}
+
     /**
      * Creates new form Customer
      */
@@ -38,13 +36,18 @@ public static void main(String args[]) {
     private void initComponents() {
 
         jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         printTicketButton = new javax.swing.JButton();
         payTicketButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ticketInfoArea = new javax.swing.JTextArea();
         welcomeLabel = new javax.swing.JLabel();
 
+        jScrollPane2.setViewportView(jEditorPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Parking System | Customer");
 
         printTicketButton.setText("Print Entry Ticket");
         printTicketButton.addActionListener(this::printTicketButtonActionPerformed);
@@ -56,6 +59,7 @@ public static void main(String args[]) {
         ticketInfoArea.setRows(5);
         jScrollPane1.setViewportView(ticketInfoArea);
 
+        welcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         welcomeLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -69,20 +73,22 @@ public static void main(String args[]) {
                 .addComponent(payTicketButton)
                 .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(welcomeLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 85, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(welcomeLabel)
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printTicketButton)
                     .addComponent(payTicketButton))
@@ -126,23 +132,112 @@ public static void main(String args[]) {
     }
 
 private void printTicket() {
-    javax.swing.JOptionPane.showMessageDialog(this,
-            "Print Ticket logic هنا");
+
+    currentTicket = new Ticket(
+            "TKT" + (int)(Math.random() * 10000),
+            "SPOT9",
+            "ABC123"
+    );
+
+    String entryTime =
+            currentTicket.getEntryTime()
+                    .format(java.time.format.DateTimeFormatter
+                            .ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+    ticketInfoArea.setText(
+            "=== PARKING TICKET ===\n" +
+            "Ticket ID: " + currentTicket.getTicketId() + "\n" +
+            "Vehicle Plate: " + currentTicket.getVehiclePlate() + "\n" +
+            "Spot ID: " + currentTicket.getSpotId() + "\n" +
+            "Entry Time: " + entryTime + "\n\n" +
+            "Please keep this ticket for exit!"
+    );
+
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Ticket printed successfully!\nTicket ID: "
+                    + currentTicket.getTicketId()
+    );
 }
 
 private void payForParking() {
-    javax.swing.JOptionPane.showMessageDialog(this,
-            "Pay logic هنا");
-}
 
+    if (currentTicket == null) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "No ticket found!"
+        );
+        return;
+    }
+
+    String input = javax.swing.JOptionPane.showInputDialog(
+            this,
+            "Enter your Ticket ID:"
+    );
+
+    if (input == null || input.trim().isEmpty()) {
+        return;
+    }
+
+    if (!input.equals(currentTicket.getTicketId())) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid Ticket ID!"
+        );
+        return;
+    }
+
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Confirm payment?",
+            "Payment Confirmation",
+            javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirm != javax.swing.JOptionPane.YES_OPTION) {
+        return;
+    }
+
+    currentTicket.setExitTime(java.time.LocalDateTime.now());
+    double amount = currentTicket.calculateAmountDue();
+    currentTicket.setAmountPaid(amount);
+
+    String entryTime =
+            currentTicket.getEntryTime()
+                    .format(java.time.format.DateTimeFormatter
+                            .ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+    String exitTime =
+            currentTicket.getExitTime()
+                    .format(java.time.format.DateTimeFormatter
+                            .ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+    ticketInfoArea.setText(
+            "=== PAYMENT RECEIPT ===\n" +
+            "Ticket ID: " + currentTicket.getTicketId() + "\n" +
+            "Vehicle: " + currentTicket.getVehiclePlate() + "\n" +
+            "Parking Spot: " + currentTicket.getSpotId() + "\n" +
+            "Entry Time: " + entryTime + "\n" +
+            "Exit Time: " + exitTime + "\n" +
+            "Hours Parked: " + currentTicket.getParkedHours() + "\n" +
+            "Amount Paid: $" + String.format("%.2f", amount) + "\n\n" +
+            "Have a safe journey!"
+    );
+}
+ 
+    private Ticket currentTicket;
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton payTicketButton;
     private javax.swing.JButton printTicketButton;
     private javax.swing.JTextArea ticketInfoArea;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
+
+
 }
