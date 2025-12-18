@@ -5,16 +5,11 @@
         <group>
             <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/customer/Customer.java</file>
             <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/operator/ExitOperator.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/auth/LoginFrame.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/ExitOperator.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/Admin.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/admin/SpotManagementPanel.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/admin/AdminDashboard.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/auth/AuthService.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/system/SessionManager.java</file>
             <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/utils/Constants.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/system/ParkingSystem.java</file>
-            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/operator/ExitOperatorGUI.java</file>
+            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/Ticket.java</file>
+            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/ParkingSpot.java</file>
+            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/ExitOperator.java</file>
+            <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/models/User.java</file>
             <file>file:/C:/Users/youse/OneDrive/Documents/GitHub/project-pl-final-version/ParkingSystem/src/utils/FileUtil.java</file>
         </group>
     </open-files>

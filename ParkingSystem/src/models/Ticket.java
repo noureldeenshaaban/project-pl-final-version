@@ -35,7 +35,7 @@ public class Ticket {
         this.isPaid = isPaid;
     }
     
-    // Calculate hours parked
+    
     public long getParkedHours() {
         if (exitTime == null) {
             return ChronoUnit.HOURS.between(entryTime, LocalDateTime.now());
@@ -43,14 +43,14 @@ public class Ticket {
         return ChronoUnit.HOURS.between(entryTime, exitTime);
     }
     
-    // Calculate amount due
+    
     public double calculateAmountDue() {
         long hours = getParkedHours();
-        if (hours < 1) hours = 1; // Minimum 1 hour charge
-        return hours * 5.0; // $5 per hour
+        if (hours < 1) hours = 1; 
+        return hours * 5.0; 
     }
     
-    // Getters and Setters
+    
     public String getTicketId() { return ticketId; }
     public String getSpotId() { return spotId; }
     public String getVehiclePlate() { return vehiclePlate; }

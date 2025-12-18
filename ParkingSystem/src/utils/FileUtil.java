@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FileUtil {
     
-    // Create file if it doesn't exist
+    
     public static void createFileIfNotExists(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -19,7 +19,7 @@ public class FileUtil {
         }
     }
     
-    // Read all lines from file
+    
     public static List<String> readAllLines(String fileName) {
         List<String> lines = new ArrayList<>();
         createFileIfNotExists(fileName);
@@ -37,7 +37,7 @@ public class FileUtil {
         return lines;
     }
     
-    // Write all lines to file
+    
     public static void writeAllLines(String fileName, List<String> lines) {
         createFileIfNotExists(fileName);
         
@@ -51,7 +51,7 @@ public class FileUtil {
         }
     }
     
-    // Append line to file
+    
     public static void appendLine(String fileName, String line) {
         createFileIfNotExists(fileName);
         
