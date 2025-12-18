@@ -55,12 +55,13 @@ public class Customer extends javax.swing.JFrame {
         payTicketButton.setText("Pay for Parking");
         payTicketButton.addActionListener(this::payTicketButtonActionPerformed);
 
+        ticketInfoArea.setEditable(false);
         ticketInfoArea.setColumns(20);
         ticketInfoArea.setRows(5);
         jScrollPane1.setViewportView(ticketInfoArea);
 
         welcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        welcomeLabel.setText("jLabel1");
+        welcomeLabel.setText("Welcome");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
