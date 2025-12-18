@@ -1,5 +1,6 @@
 
 package operator;
+import auth.LoginFrame;
 
 /**
  *
@@ -32,6 +33,7 @@ public class ExitOperator extends javax.swing.JFrame {
         clearButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         calculationArea = new javax.swing.JTextArea();
+        BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exit opertator");
@@ -71,37 +73,49 @@ public class ExitOperator extends javax.swing.JFrame {
         calculationArea.setName("calculationArea "); // NOI18N
         jScrollPane1.setViewportView(calculationArea);
 
+        BackButton.setText("back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(calculateButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                .addComponent(clearButton))
-                            .addComponent(ticketIdField))))
-                .addGap(33, 33, 33))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                                .addGap(8, 8, 8)
+                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(calculateButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                        .addComponent(clearButton))
+                                    .addComponent(ticketIdField))))
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(BackButton))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,6 +147,13 @@ public class ExitOperator extends javax.swing.JFrame {
 
     }//GEN-LAST:event_clearButtonActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        new LoginFrame().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BackButtonActionPerformed
+
    private void calculateHours() {
     String ticketId = ticketIdField.getText().trim();
 
@@ -148,7 +169,7 @@ public class ExitOperator extends javax.swing.JFrame {
     models.Ticket ticket = null;
 
     for (String line : ticketLines) {
-        String[] parts = line.split(",");
+        String[] parts = line.split(",", -1);
         if (parts.length >= 7 && parts[0].trim().equals(ticketId)) {
             ticket = new models.Ticket(
                     parts[0].trim(),
@@ -220,6 +241,7 @@ private void clearFields() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JButton calculateButton;
     private javax.swing.JTextArea calculationArea;
     private javax.swing.JButton clearButton;
